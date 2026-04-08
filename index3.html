@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather app</title>
+</head>
+<body>
+    <ul>
+        <li>久留米 <span id="temperature">--</span> ℃</li>
+    </ul>
+    <button id="btn" type="button">現在の気温を取得</button>
+
+    <script>
+        async function getWeather() {
+            const tempSpan = document.getElementById("temperature");
+            tempSpan.textContent = "読み込み中...";
+            try {
+                const url = "https://api.open-meteo.com/v1/forecast?latitude=33.31&longitude=130.50&current_weather=true";
+                const res = await fetch(url);
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+                const temp = data.current_weather.temperature;
+                tempSpan.textContent = temp;
+                console.log("今の気温は:", temp);
+            } catch (error) {
+                console.error(error);
+                tempSpan.textContent = "エラー";
+            }
+        }
+
+        const btn = document.getElementById("btn");
+        btn.addEventListener("click", getWeather);
+    </script>
+</body>
+</html>
