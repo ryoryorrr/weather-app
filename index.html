@@ -2,34 +2,29 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Weather app</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>久留米の天気予報</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding-top: 50px; }
+        .temp { font-size: 3rem; font-weight: bold; color: #ff4500; }
+    </style>
 </head>
 <body>
-    <ul>
-        <li>久留米 <span id="temperature">--</span> ℃</li>
-    </ul>
-    <button id="btn" type="button">現在の気温を取得</button>
 
-    <script>
-        async function getWeather() {
-            const tempSpan = document.getElementById("temperature");
-            tempSpan.textContent = "読み込み中...";
-            try {
-                const url = "https://api.open-meteo.com/v1/forecast?latitude=33.31&longitude=130.50&current_weather=true";
-                const res = await fetch(url);
-                if (!res.ok) throw new Error(`HTTP ${res.status}`);
-                const data = await res.json();
-                const temp = data.current_weather.temperature;
-                tempSpan.textContent = temp;
-                console.log("今の気温は:", temp);
-            } catch (error) {
-                console.error(error);
-                tempSpan.textContent = "エラー";
-            }
-        }
+    <h1>久留米市の天気</h1>
+    
+    <div class="temp">
+        <span id="temperature">--</span>℃
+    </div>
 
-        const btn = document.getElementById("btn");
-        btn.addEventListener("click", getWeather);
-    </script>
+    <h1>何を着るか</h1>
+
+    <div class="clothes">
+        <span id="outfit">--</span>
+    </div>
+
+    <button onclick="getWeather()">天気を更新</button>
+
+    <script src="main3.js"></script>
 </body>
 </html>
