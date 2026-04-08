@@ -1,7 +1,7 @@
 const outfitDisp =document.getElementById("outfit")
 
 async function getWeather(){
-    const url = "https://api.open-meteo.com/v1/forecast?latitude=33.31&longitude=130.50&current_weather=true";
+    const url = "https://api.open-meteo.com/v1/forecast?latitude=33.3167&longitude=130.5167&hourly=temperature_2m,rain";
     const res=await fetch(url)
     console.log(res);
     const data = await res.json();
@@ -29,8 +29,7 @@ async function getWeather(){
     
 }
 
-const btn = document.getElementById("btn");
-btn.addEventListener("click", getWeather);
+getWeather();
 
 
 
