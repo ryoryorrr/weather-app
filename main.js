@@ -1,13 +1,12 @@
-const outfitDisp =document.getElementById("outfit")
-
 async function getWeather(){
-    const url = "https://api.open-meteo.com/v1/forecast?latitude=33.3167&longitude=130.5167&hourly=temperature_2m,rain";
+    const url = "https://api.open-meteo.com/v1/forecast?latitude=33.3167&longitude=130.5167&hourly=temperature_2m,rain&current_weather=true";
     const res=await fetch(url)
     console.log(res);
     const data = await res.json();
     const temp = data.current_weather.temperature;
 
     const temDisp = document.getElementById("temperature")
+    const outfitDisp =document.getElementById("outfit")
 
     temDisp.textContent = temp;
 
@@ -15,13 +14,13 @@ async function getWeather(){
 
     if(temp>=25){
         outfitDisp.textContent="Tシャツ";
-    }if(temp>=20){
+    }else if(temp>=20){
         outfitDisp.textContent="Tシャツor薄手の長袖";
-    }if(temp>=15){
+    }else if(temp>=15){
         outfitDisp.textContent="スウェットor軽めのアウター";
-    }if(temp>=10){
+    }else if(temp>=10){
         outfitDisp.textContent="ニットorパーカーorジャケット";
-    }if(temp>=5){
+    }else if(temp>=5){
         outfitDisp.textContent="厚手コートorヒートテック";
     }else{
         outfitDisp.textContent="ダウンコート";
