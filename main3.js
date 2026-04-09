@@ -33,6 +33,3 @@ async function getWeather(){
 
 getWeather();
 
-console.log("aaa")
-
-console.log("test")
