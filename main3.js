@@ -7,6 +7,7 @@ async function getWeather(){
     console.log(res);
     const data = await res.json();
     const temp = data.current_weather.temperature;
+    const rain = data.current_weather.rain;
 
     const temDisp = document.getElementById("temperature")
     const outfitDisp =document.getElementById("outfit")
@@ -14,6 +15,8 @@ async function getWeather(){
     temDisp.textContent = temp;
 
     console.log("今の気温は:", temp);
+
+    console.log(rain);
 
     if(temp>=25){
         outfitDisp.textContent="Tシャツ";
@@ -33,6 +36,3 @@ async function getWeather(){
 
 getWeather();
 
-console.log("aaa")
-
-console.log("test")
