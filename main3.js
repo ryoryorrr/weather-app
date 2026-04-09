@@ -16,7 +16,7 @@ async function getWeather(){
 
     console.log("今の気温は:", temp);
 
-    console.log(rain);
+    console.log("雨",rain);
 
     if(temp>=25){
         outfitDisp.textContent="Tシャツ";
