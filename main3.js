@@ -2,12 +2,12 @@
 
 
 async function getWeather(){
-    const url = "https://api.open-meteo.com/v1/forecast?latitude=33.3167&longitude=130.5167&hourly=temperature_2m,rain&current_weather=true";
+    const url = "https://api.open-meteo.com/v1/forecast?latitude=33.3167&longitude=130.5167&current=temperature_2m,precipitation&timezone=Asia%2FTokyo";
     const res=await fetch(url)
     console.log(res);
     const data = await res.json();
     const temp = data.current_weather.temperature;
-    const rains = data.current_weather.rain;
+    const rain = data.current.precipitation;
 
     const temDisp = document.getElementById("temperature")
     const outfitDisp =document.getElementById("outfit")
@@ -16,7 +16,7 @@ async function getWeather(){
 
     console.log("今の気温は:", temp);
 
-    console.log("雨",rains);
+    console.log("雨",rain);
 
     if(temp>=25){
         outfitDisp.textContent="Tシャツ";
